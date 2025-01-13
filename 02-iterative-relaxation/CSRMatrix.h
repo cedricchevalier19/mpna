@@ -29,11 +29,11 @@ struct CSRMatrix
         values.resize(nnz);
     }
 
-    friend CSRMatrix createLaplacian2D(IdType size);
+    friend CSRMatrix createLaplacian2D(IdType size, ScalarType);
 };
 
 template<typename IdType, typename ScalarType>
-CSRMatrix<IdType, ScalarType> createLaplacian2D(IdType size)
+CSRMatrix<IdType, ScalarType> createLaplacian2D(IdType size, ScalarType)
 {
     IdType n = size * size;
     int nnz = 5 * n - 4 * size; // Number of non-zero elements
