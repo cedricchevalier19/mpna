@@ -4,10 +4,7 @@
 
 int main()
 {
-    CSRMatrix<int, double> A(3, 3);
-    A.row_ptr = {0, 1, 2, 3};
-    A.col_idx = {0, 1, 2};
-    A.values = {1.0, 2.0, 3.0};
+    auto A = createLaplacian2D<int, double>(9);
 
     for (int i = 0; i < A.n; i++)
     {
