@@ -4,4 +4,5 @@ project(mpna-iter-1 CXX)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(iter_laplacian main.cpp
-        CSRMatrix.h)
+        CSRMatrix.h
+        Jacobi.h)
