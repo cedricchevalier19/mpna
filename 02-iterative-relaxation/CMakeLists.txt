@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(iter_laplacian main.cpp
         CSRMatrix.h
-        Jacobi.h)
+        Jacobi.h
+        GaussSeidel.h)
