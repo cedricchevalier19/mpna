@@ -238,7 +238,7 @@ On pourra utiliser les paramètres suivants:
 1. $\kappa_{0}=0,01$, $\sigma=0.1$, $\beta = 1$, $\kappa(u)=\kappa_0 \sqrt u $,
 2. $\kappa_{0}=0,01$, $\sigma=1$, $\beta = 300$, $\kappa(u)=\kappa_0 u^2$.
 
-Pour l'application numérique, on prendra $N=50, ... 1000$ points de discrétisation.
+Pour l'application numérique, on prendra $N=50, ... 10000$ points de discrétisation.
 
 Pour le pas de temps, on prendra 
 
@@ -249,4 +249,4 @@ avec $\gamma=0.1$, $1$ ou $10$.
 Pour la partie solveur linéaire, on utilisera la bibliothèque `hypre` (https://github.com/hypre-space/hypre).
 En particulier, l'interface IJ sera utilisée pour stocker la matrice creuse et le vecteur du second membre (https://hypre.readthedocs.io/en/latest/ch-ij.html)
 
-L'utilisation d'un préconditionneur multigrille pourra être envisagée en s'inspirant de l'exemple fourni dans la documentation de `hypre` (https://hypre.readthedocs.io/en/latest/ch-ij.html).
+L'utilisation d'un préconditionneur multigrille pourra être envisagée en s'inspirant de l'exemple fourni dans la documentation de `hypre` (https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html).
