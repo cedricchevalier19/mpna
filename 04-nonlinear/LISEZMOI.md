@@ -11,11 +11,10 @@ On veut calculer la répartition de température transversale dans une flamme (f
 
 Avec ces hypothèses, l'équation de conservation de l'énergie à l'état stationnaire dans la direction ![\bgroup\color{black}$ x$\egroup](img195.png) s'écrit:
 
-![$\displaystyle \underbrace{-\frac{\partial}{\partial}\left(\lambda\frac{\partial...
-...ce{\sigma(T^{4}-T_{0}^{4})}_{\mbox{rayonnement}}=\underbrace{Q}_{\mbox{source}}$](img1586.png) (3.66)
+$$ \underbrace{-\frac{\partial}{\partial}\left(\lambda\frac{\partial T}{\partial x}\right)}_{\mbox{diffusion}} 
++ \underbrace{\sigma(T^{4}-T_{0}^{4})}_{\mbox{rayonnement}}=\underbrace{Q}_{\mbox{source}}$$
 
   
-
 Dans ce modèle, l'énergie ![\bgroup\color{black}$ Q$\egroup](img1587.png) produite dans la flamme de largeur ![\bgroup\color{black}$ 2\delta$\egroup](img1461.png) par réaction chimique est diffusée par conduction et rayonné vers l'air extérieur à température ![\bgroup\color{black}$ T_{0}$\egroup](img171.png) . Pour le rayonnement, nous avons adopté un modèle simple de rayonnement de corps noir proportionnel à ![\bgroup\color{black}$ T^{4}$\egroup](img1588.png) avec une constante de rayonnement ![\bgroup\color{black}$ \sigma$\egroup](img1589.png) . Les variations de température entre la flamme et l'extérieur étant importantes (avec un rapport de l'ordre de 3 à 4), le coefficient de conduction ![\bgroup\color{black}$ \lambda$\egroup](img165.png) dépend de la température à travers une loi en puissance ![\bgroup\color{black}$ \lambda(T)=\lambda_{0}T^{q}$\egroup](img1590.png) . Enfin pour le terme source, nous choisirons un terme de réaction constant dans la flamme et nul à l'extérieur.
 
 En supposant que la flamme est symétrique, les conditions aux limites s'écrivent:
