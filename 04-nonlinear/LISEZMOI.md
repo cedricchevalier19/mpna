@@ -1,13 +1,12 @@
 # Équation de diffusion non linéaire
 
+Source: https://perso.univ-lyon1.fr/marc.buffat/COURS/COURSDF_HTML/node29.html
 
 ## Problème physique: diffusion dans une flamme
 
 On veut calculer la répartition de température transversale dans une flamme. Pour cela on utilise un modèle simple, en supposant que dans la direction transverse (notée $x$) on a des échanges de chaleur uniquement par diffusion et par rayonnement.
 
-**Figure 3.32:** Profil de température transversal dans une flamme
-
-![\includegraphics[width=0.2\paperwidth,keepaspectratio]{CHAP3/flamme}](img1585.png)
+![flamme](flamme.png)
 
 Avec ces hypothèses, l'équation de conservation de l'énergie à l'état stationnaire dans la direction $x$ s'écrit:
 
@@ -43,13 +42,6 @@ on peut écrire un problème linéaire équivalent (en posant $\alpha=4\sigma$):
 
 $$-\frac{\partial}{\partial}\left(\kappa_{0}\frac{\partial u}{\partial x}\right)+\alpha(u-1)=Q(x)$$.
 
-  
-On a tracé sur la figure ([3.33](#c3fig16)) cette solution analytique pour $\kappa_{0}=0,01$ et différentes valeurs de $\alpha$ pour montrer l'importance du rayonnement qui a tendance à raidir le front de température.
-
-**Figure 3.33:** solution linéaire de ([3.68](#c3eq52)) pour différentes valeurs de $\alpha$ 
-
-![\includegraphics[width=0.2\paperwidth,keepaspectratio]{CHAP3/solflamme}](img1603.png)
-
 
 ### Discrétisation par différences finies
 
@@ -79,16 +71,16 @@ A partir de ce système , on construit une suite de valeurs $\{u_{i}^{k}\}_{i=0,
 $$u_{i}^{k+1}=G_{i}(u_{0}^{k},u_{1}^{k},..u_{j}^{k}...,u_{N}^{k}), \forall i=1,N$$
 
   
-Si la suite $ \{u_{i}^{k}\}_{i=0,N}$\ converge, elle converge vers un point fixe (i.e. une solution) de ([3.71](#c3eq55)) et donc vers la solution du problème non linéaire initial ([3.70](#c3eq54)). La condition de convergence de la suite de point fixe ([3.72](#c3eq56)) est donnée par le théorème classique du point fixe:
+Si la suite $ \{u_{i}^{k}\}_{i=0,N}$\ converge, elle converge vers un point fixe (i.e. une solution) et donc vers la solution du problème non linéaire initial. La condition de convergence de la suite de point fixe est donnée par le théorème classique du point fixe:
 
 **théorème du point fixe:**
 
-la suite itérative ([3.72](#c3eq56)) converge au voisinage d'un point fixe de ([3.71](#c3eq55)) si et seulement si la matrice jacobienne $J$ de $G$ :  $J_{i,j}=\left(\frac{\partial G_{i}}{\partial u_{j}}\right)$, a une norme inférieure à $1$, i.e. possède dans ce voisinage des valeurs propres de modules inférieurs à $1$.
+la suite itérative $(u^n)$ converge au voisinage d'un point fixe si et seulement si la matrice jacobienne $J$ de $G$ :  $J_{i,j}=\left(\frac{\partial G_{i}}{\partial u_{j}}\right)$, a une norme inférieure à $1$, i.e. possède dans ce voisinage des valeurs propres de modules inférieurs à $1$.
 
   
 ### Schéma explicite
 
-Une première approche consiste à considérer la solution du problème initial ([3.67](#c3eq51)) comme solution stationnaire du problème instationnaire associé:
+Une première approche consiste à considérer la solution du problème initial comme solution stationnaire du problème instationnaire associé:
 
 $$\frac{\partial u}{\partial t}-\frac{\partial}{\partial}\left(\kappa(u)\frac{\partial u}{\partial x}\right)+\sigma(u^{4}-1)=Q(x)$$
 
@@ -131,11 +123,11 @@ Par définition, cette matrice Jacobienne relie une petite variation $\delta u_{
 
 $$\left[\delta u_{i}^{n+1}\right]=\mathcal{G}\left[\delta u_{i}^{n}\right]$$
 
-En interprétant $\delta u_{i}^{n}$ comme une perturbation, la relation précédente montre que la matrice $\mathcal{G}$ est la matrice d'amplification du schéma différences finies explicite ([3.74](#c3eq59)), i.e. une perturbation $\epsilon_{i}^{n}$ de la solution de ([3.73](#c3eq57)) vérifie
+En interprétant $\delta u_{i}^{n}$ comme une perturbation, la relation précédente montre que la matrice $\mathcal{G}$ est la matrice d'amplification du schéma différences finies explicite, i.e. une perturbation $\epsilon_{i}^{n}$ de la solution vérifie
 
 $$\displaystyle \left[\epsilon_{i}^{n+1}\right]=\mathcal{G}\left[\epsilon_{i}^{n}\right]$$
 
-Or pour que le schéma ([3.74](#c3eq59)) soit stable, il faut que les valeurs propres de la matrice $\mathcal{G}$ soient en module inférieures à 1. Pour notre schéma, la condition de convergence de la méthode de point fixe est en faite une condition de stabilité sur le schéma explicite associé.
+Or pour que le schéma soit stable, il faut que les valeurs propres de la matrice $\mathcal{G}$ soient en module inférieures à 1. Pour notre schéma, la condition de convergence de la méthode de point fixe est en faite une condition de stabilité sur le schéma explicite associé.
 
 Pour pouvoir faire l'analyse simplement, on simplifie les coefficients de la matrice $\mathcal{G}$ en négligeant les termes en $\frac{1}{2}(\frac{\partial\kappa_{i}}{\partial u_{i}})$ devant ceux en $\kappa_{i}$ :
 
@@ -148,12 +140,8 @@ $$c_{i}\approx dt \frac{\kappa_{i-\frac{1}{2}}^{n}}{dx^{2}}$$
 L'équation sur la perturbation $\epsilon_{i}^{n}$ s'écrit alors:
 
 $$ \frac{\epsilon_{i}^{n+1}-\epsilon_{i}^{n}}{dt }-\frac{\kappa_{i+\frac{1}{2}}^{n}(\epsilon_{i+1}^{n}-\epsilon_{i}^{n})+\kappa_{i-\frac{1}{2}}^{n}(\epsilon_{i}^{n} - \epsilon_{i-1}^{n})}{dx^{2}} + 4 \sigma (u_i^n)^3 \epsilon_i^n=0$$
-...
-...silon_{i-1}^{n}\right)}{dx^{2}}+4\sigma(u_{i}^{n})^{3}\epsilon_{i}^{n}=0$\egroup](img1640.png)
 
-Cette équation est analogue à l'équation de la perturbation du schéma explicite pour le problème de convection linéaire étudié au paragraphe (c3chalsource) avec les paramètres ![\bgroup\color{black}$ \kappa=\kappa_{i+\frac{1}{2}}=\kappa_{i-\frac{1}{2}}$\egroup](img1641.png) et ![\bgroup\color{black}$ \alpha=4\sigma(u_{i}^{n})^{3}$\egroup](img1642.png) .
-
-La condition de stabilité pour le schéma explicite non linéaire s'écrit donc:
+La condition de stabilité pour le schéma explicite non linéaire s'écrit:
 
 $$dt<\frac{2}{4\sigma\left(u_{i}^{n}\right)^{3}+\frac{4\kappa(u_{i}^{n})}{dx^{2}}}$$
 
@@ -252,4 +240,13 @@ On pourra utiliser les paramètres suivants:
 
 Pour l'application numérique, on prendra $N=50, ... 1000$ points de discrétisation.
 
-Pour le pas de temps, on prendra $$dt=\gamma \frac{2}{4\sigma u_{max}^{3}+\frac{4\kappa(u_{max})}{dx^{2}}}$$ avec $\gamma=0.1$, $1$ ou $10$.
+Pour le pas de temps, on prendra 
+
+$$dt=\gamma \frac{2}{4\sigma u_{max}^{3}+\frac{4\kappa(u_{max})}{dx^{2}}}$$
+
+avec $\gamma=0.1$, $1$ ou $10$.
+
+Pour la partie solveur linéaire, on utilisera la bibliothèque `hypre` (https://github.com/hypre-space/hypre).
+En particulier, l'interface IJ sera utilisée pour stocker la matrice creuse et le vecteur du second membre (https://hypre.readthedocs.io/en/latest/ch-ij.html)
+
+L'utilisation d'un préconditionneur multigrille pourra être envisagée en s'inspirant de l'exemple fourni dans la documentation de `hypre` (https://hypre.readthedocs.io/en/latest/ch-ij.html).
