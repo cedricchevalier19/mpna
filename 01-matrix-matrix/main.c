@@ -49,9 +49,9 @@ int main(int argc, char *argv[])
     // Note how we allocate memory for a 2D array in a single block
     // This is done to ensure that the memory is contiguous
     // Can you comment on how data are stored in memory for this 2D array?
-    double **A = (double **)malloc(n * m * sizeof(double));
-    double **B = (double **)malloc(m * p * sizeof(double));
-    double **C = (double **)malloc(n * p * sizeof(double));
+    double (*A)[m] = malloc(n * sizeof(*A));
+    double (*B)[p] = malloc(m * sizeof(*B));
+    double (*C)[p] = malloc(n * sizeof(*C));
 
     // Initialize matrices
     fill_matrix(n, m, A);
