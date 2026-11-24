@@ -1,0 +1,62 @@
+# MPNA lab environment: one image (docker/Dockerfile), one service per lab.
+# The whole repository is mounted at /mpna, because later labs compile the
+# code of earlier ones (e.g. Lab 6 uses session2/ and session3/).
+#
+#   docker compose build                    # once
+#   docker compose run --rm lab1            # shell in session1/lab/code
+#   docker compose run --rm lab1 make       # or run one command
+#
+# Files are written with your user id: on Linux, if `id -u` is not 1000, run
+#   export MPNA_UID=$(id -u) MPNA_GID=$(id -g)
+# first (or put both in a .env file next to this one). See docker/README.md.
+
+name: mpna
+
+x-lab: &lab
+  build: docker
+  image: mpna-lab:2026
+  volumes:
+    - .:/mpna
+  user: "${MPNA_UID:-1000}:${MPNA_GID:-1000}"
+  init: true
+  stdin_open: true
+  tty: true
+  shm_size: 1gb
+
+services:
+  lab1:
+    <<: *lab
+    working_dir: /mpna/session1/lab/code
+  lab2:
+    <<: *lab
+    working_dir: /mpna/session2/lab/code
+  lab3-eigen:
+    <<: *lab
+    working_dir: /mpna/session3/lab/eigen
+  lab3-graph:
+    <<: *lab
+    working_dir: /mpna/session3/lab/graph
+  lab4-dense:
+    <<: *lab
+    working_dir: /mpna/session4/lab/dense
+  lab4-qr:
+    <<: *lab
+    working_dir: /mpna/session4/lab/qr
+  lab5:
+    <<: *lab
+    working_dir: /mpna/session5/lab/code
+  lab6:
+    <<: *lab
+    working_dir: /mpna/session6/lab/code
+  lab7:
+    <<: *lab
+    working_dir: /mpna/session7/lab/code
+  lab8:
+    <<: *lab
+    working_dir: /mpna/session8/lab/code
+  lab9:
+    <<: *lab
+    working_dir: /mpna/session9/lab/code
+  project:
+    <<: *lab
+    working_dir: /mpna
